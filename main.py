@@ -1,8 +1,18 @@
-#!/usr/bin/env python3
-# main.py -- Ponto de entrada principal
+import os
+import sys
 
-# Importa e executa o script de correção
-import fix_and_run
+# Garante que o venv consiga importar o módulo instalado
+try:
+    import not_exploitable.core as core
+except ImportError:
+    print("Erro: Módulo not_exploitable não encontrado.")
+    sys.exit(1)
 
-if __name__ == "__main__":
-    fix_and_run.run_pentest()
+print(f"--- Sistema de Gestão Interna Sec4US ---")
+print(f"Executando como usuário: {os.getlogin()}")
+print(f"Iniciando rotina de processamento...")
+
+# Chama a função do módulo principal
+core.run()
+
+print("Processamento finalizado.")
